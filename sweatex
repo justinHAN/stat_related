@@ -1,15 +1,22 @@
 # this is a R file
 # this procedure runs the .Rnw and .tex file in one time and output the pdf file for preview
 # the syntex for using this function is
-# sweatex("filename", command = "latex", preview=TRUE)
+# sweatex("filename", command = "latex", preview = TRUE)
 # "filename" here is with default extension .Rnw
-# preview is with default FALSE
+# preview is with default TRUE
 
 
 
-function (filename, extension='Rnw', command='pdflatex', silent=FALSE, preview=FALSE) 
+function (filename, extension='Rnw', command='pdflatex', silent = FALSE, preview = TRUE) 
 {
-	if (command == 'latex') command = 'simpdftex latex --maxpfb'
+	if (command == 'latex') 
+	{  
+	    # command = 'simpdftex latex --maxpfb' 
+	    # This is designed for latex installed under Windows OS
+	    
+	    command = 'typeset'
+	    # This is designed for Texshop under Mac OS
+	}
 	extension <- paste('.', extension, sep='')
 	path = options('latexcmd')[[1]]
 	path = substr(path, start = 1, stop = nchar(path) - 5)
