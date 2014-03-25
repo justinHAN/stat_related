@@ -1,0 +1,26 @@
+# this is a R file
+# this procedure runs the .Rnw and .tex file in one time and output the pdf file for preview
+# the syntex for using this function is
+# sweatex("filename", command = "latex", preview=TRUE)
+# "filename" here is with default extension .Rnw
+# preview is with default FALSE
+
+
+
+function (filename, extension='Rnw', command='pdflatex', silent=FALSE, preview=FALSE) 
+{
+	if (command == 'latex') command = 'simpdftex latex --maxpfb'
+	extension <- paste('.', extension, sep='')
+	path = options('latexcmd')[[1]]
+	path = substr(path, start = 1, stop = nchar(path) - 5)
+	Sweave(paste(filename, extension, sep=''))
+	system(paste(path, command, ' ', filename, sep =''), intern = silent)
+	# if(command == 'latex')
+	# {
+	#	system(paste(path, 'dvipdfm', ' ', filename, sep = ''))
+	# }
+	if(preview)
+	{
+		system(paste(options('pdfviewer')[[1]], ' ', filename, '.pdf', sep = ''))
+	}
+}
