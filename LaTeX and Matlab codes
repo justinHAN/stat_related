@@ -1,5 +1,9 @@
 % LaTeX settings for MATLAB code listings
 % based on Ted Pavlic's settings in http://links.tedpavlic.com/ascii/homework_new_tex.ascii
+% Put every file in the same file address, including the .tex file, the .m files and related files for the work.
+% You can set up the color, the font, and the size of the codes in the pdf file by using below codes.
+
+
 \usepackage{listings}
 \usepackage[usenames,dvipsnames]{color}
  
